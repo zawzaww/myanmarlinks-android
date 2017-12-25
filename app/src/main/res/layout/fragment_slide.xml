@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e3e3e3"
+    tools:context="com.zawzaw.savethelibrary.ui.fragment.SlideFragment">
+
+    <ImageView
+        android:id="@+id/main_slider_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/main_slider_text"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:background="#99000000"
+        android:maxLines="2"
+        android:ellipsize="end" />
+
+</RelativeLayout>

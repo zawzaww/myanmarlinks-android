@@ -12,9 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.zawzaw.savethelibrary.viewmodel.NewsModel;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
+    NewsModel newsModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
