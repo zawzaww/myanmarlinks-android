@@ -13,7 +13,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:id="@+id/main_slider_text"
         android:layout_alignParentBottom="true"
         android:padding="10dp"

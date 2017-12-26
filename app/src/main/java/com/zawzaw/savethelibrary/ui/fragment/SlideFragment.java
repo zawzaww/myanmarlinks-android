@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.utils.Const;
-import com.zawzaw.savethelibrary.utils.Modular;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
 
 /**
@@ -61,8 +60,7 @@ public class SlideFragment extends Fragment implements View.OnClickListener
         TextView textView = view.findViewById(R.id.main_slider_text);
 
         Glide.with(getActivity().getApplicationContext()).load(Const.IMAGE_URL + imageLink).into(imageView);
-        textView.setText(Modular.mercyOnZgUser(newTitle));
-        FontEmbedder.force(textView);
+        FontEmbedder.force(textView, newTitle);
         view.setOnClickListener(this);
 
         return view;
