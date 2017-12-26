@@ -1,38 +1,43 @@
 package com.zawzaw.savethelibrary.ui.fragment;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.utils.Const;
+import com.zawzaw.savethelibrary.utils.Modular;
+import com.zawzaw.savethelibrary.utils.FontEmbedder;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SlideFragment extends Fragment
+public class SlideFragment extends Fragment implements View.OnClickListener
 {
     private static final String ARG_PARAM1 = "imageLink";
     private static final String ARG_PARAM2 = "newTitle";
+    private static final String ARG_PARAM3 = "post_id";
 
     private String imageLink;
     private String newTitle;
+    private int post_id;
 
     public SlideFragment() {
         // Required empty public constructor
     }
 
-    public static SlideFragment newInstance(String imageLink, String newTitle) {
+    public static SlideFragment newInstance(String imageLink, String newTitle, int post_id)
+    {
         SlideFragment fragment = new SlideFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, imageLink);
         args.putString(ARG_PARAM2, newTitle);
+        args.putInt(ARG_PARAM3, post_id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,6 +48,7 @@ public class SlideFragment extends Fragment
         if (getArguments() != null) {
             imageLink = getArguments().getString(ARG_PARAM1);
             newTitle = getArguments().getString(ARG_PARAM2);
+            post_id = getArguments().getInt(ARG_PARAM3);
         }
     }
 
@@ -55,9 +61,17 @@ public class SlideFragment extends Fragment
         TextView textView = view.findViewById(R.id.main_slider_text);
 
         Glide.with(getActivity().getApplicationContext()).load(Const.IMAGE_URL + imageLink).into(imageView);
-        textView.setText(newTitle);
+        textView.setText(Modular.mercyOnZgUser(newTitle));
+        FontEmbedder.force(textView);
+        view.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        Log.d("CLICK", String.valueOf(post_id));
     }
 
 }

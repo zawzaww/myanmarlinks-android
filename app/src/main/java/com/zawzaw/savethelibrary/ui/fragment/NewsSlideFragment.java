@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 import me.relex.circleindicator.CircleIndicator;
+import com.wang.avi.AVLoadingIndicatorView;
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.model.gson.GsonNew;
 import com.zawzaw.savethelibrary.viewmodel.NewsModel;
@@ -27,6 +28,7 @@ public class NewsSlideFragment extends Fragment
     ViewPager mViewPager;
     CircleIndicator indicator;
     NewsPagerAdapter adapter;
+    AVLoadingIndicatorView loadingIndicator;
 
     public NewsSlideFragment() {
         // Required empty public constructor
@@ -46,6 +48,7 @@ public class NewsSlideFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_news_slide, container, false);
         mViewPager = view.findViewById(R.id.main_slider);
         indicator = view.findViewById(R.id.indicator);
+        loadingIndicator = view.findViewById(R.id.slider_loading_indicator);
 
         adapter = new NewsPagerAdapter(getFragmentManager(), gsonNews);
         mViewPager.setAdapter(adapter);
@@ -57,6 +60,7 @@ public class NewsSlideFragment extends Fragment
 
         newsModel.getLatestNews(1).observe(this, latestNews -> {
             gsonNews.addAll(latestNews.getNews());
+            loadingIndicator.hide();
             adapter.notifyDataSetChanged();
         });
         return view;
@@ -73,8 +77,7 @@ public class NewsSlideFragment extends Fragment
 
         @Override
         public Fragment getItem(int position) {
-            SlideFragment slideFragment = SlideFragment.newInstance(gsonNews.get(position).getFeature_image_path(),
-                    gsonNews.get(position).getPost_title());
+            SlideFragment slideFragment = SlideFragment.newInstance(gsonNews.get(position).getFeature_image_path(), gsonNews.get(position).getPost_title(), gsonNews.get(position).getPost_id());
             return slideFragment;
         }
 
@@ -82,7 +85,6 @@ public class NewsSlideFragment extends Fragment
         public int getCount() {
             return gsonNews.size();
         }
-
     }
 
 }
