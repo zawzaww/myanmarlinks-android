@@ -15,6 +15,7 @@ public class TypefaceManager
     public static final String PASSCODEFONT = "Font-Regular.ttf";
     public static final String ROBOTO = "roboto.ttf";
     public static final String DIGIT = "digit.ttf";
+    public static final String MYANMAR_SAGAR = "myanmar_sagar.ttf";
 
     private AssetManager manager;
 
@@ -45,6 +46,10 @@ public class TypefaceManager
 
     public Typeface getRobotoFont() {
         return getTypeface(ROBOTO);
+    }
+
+    public Typeface getMyanmarSager() {
+        return getTypeface(MYANMAR_SAGAR);
     }
 
     public Typeface getTypeface(final String finalname)

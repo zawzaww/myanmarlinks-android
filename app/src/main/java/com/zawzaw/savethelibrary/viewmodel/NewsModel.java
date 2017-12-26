@@ -43,7 +43,7 @@ public class NewsModel extends ViewModel
             @Override
             public void onFailure(Call<GsonNews> call, Throwable t)
             {
-                latestNews.setValue(null);
+                // Make somer error for server error
             }
         });
 

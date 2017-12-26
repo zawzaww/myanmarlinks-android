@@ -15,6 +15,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
+import me.myatminsoe.mdetect.MDetect;
+import com.zawzaw.savethelibrary.MainApplication;
+
 
 /**
  * Created by zawzaw on 26/12/17.
@@ -33,6 +36,18 @@ public class FontEmbedder
     {
         textView.setText(Modular.mercyOnZgUser(text));
         textView.setTypeface(typeface);
+    }
+
+    public static void forceTitle(TextView textView, String text)
+    {
+        textView.setText(Modular.mercyOnZgUser(text));
+        if (MDetect.INSTANCE.isUnicode())
+        {
+            textView.setTypeface(MainApplication.typefaceManager.getMyanmarSager());
+        }
+        else {
+            textView.setTypeface(typeface);
+        }
     }
 
     public static void force(TextView textView)

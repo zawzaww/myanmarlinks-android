@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import com.zawzaw.savethelibrary.utils.FontEmbedder;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         TextView latestReviews = findViewById(R.id.title_latest_reviews);
-        latestReviews.setTypeface(MainApplication.typefaceManager.getRobotoFont());
+        FontEmbedder.forceTitle(latestReviews, getString(R.string.latest_reviews));
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your Own Action", Snackbar.LENGTH_LONG)
