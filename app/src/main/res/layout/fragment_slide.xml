@@ -9,7 +9,7 @@
         android:id="@+id/main_slider_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="center"/>
+        android:scaleType="matrix"/>
 
     <TextView
         android:layout_width="match_parent"
