@@ -11,11 +11,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import com.squareup.otto.Subscribe;
+import com.zawzaw.savethelibrary.event.eventclass.Events;
+import com.zawzaw.savethelibrary.event.main.OttoBus;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
+import com.zawzaw.savethelibrary.utils.Modular;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
+    FloatingActionButton fab;
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        OttoBus.getBus().register(this);
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        OttoBus.getBus().unregister(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -24,10 +45,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView latestReviews = findViewById(R.id.title_latest_reviews);
+        TextView latestReviews = findViewById(R.id.title_latest_review);
         FontEmbedder.forceTitle(latestReviews, getString(R.string.latest_reviews));
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your Own Action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
 
@@ -76,6 +97,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Subscribe
+    public void getMessage(Events.NoInternetConnection noInternetConnection)
+    {
+        Snackbar.make(fab, Modular.mercyOnZgUser(getString(R.string.no_internet_connection)), Snackbar.LENGTH_INDEFINITE).setAction("RETRY", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+                startActivity(getIntent());
+
+            }
+        }).show();
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
