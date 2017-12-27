@@ -30,6 +30,13 @@
             android:textAppearance="?android:textAppearanceMedium"
             android:text="@string/latest_reviews" />
 
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/latest_book_review_fragment"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:name="com.zawzaw.savethelibrary.ui.fragment.LatestReviewsFragment" />
     </LinearLayout>
 
 </ScrollView>

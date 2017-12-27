@@ -6,6 +6,9 @@ import android.arch.lifecycle.ViewModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import java.util.List;
+import com.zawzaw.savethelibrary.model.gson.GsonBook;
+import com.zawzaw.savethelibrary.model.gson.GsonBooks;
 import com.zawzaw.savethelibrary.model.gson.GsonNews;
 import com.zawzaw.savethelibrary.network.BaseApi;
 import com.zawzaw.savethelibrary.network.services.MainService;
@@ -15,9 +18,21 @@ import com.zawzaw.savethelibrary.utils.Const;
  * Created by zawzaw on 25/12/17.
  */
 
-public class NewsModel extends ViewModel
+public class MainModel extends ViewModel
 {
     public MutableLiveData<GsonNews> latestNews;
+
+    public MutableLiveData<List<GsonBook>> latestReviews;
+
+    public LiveData<List<GsonBook>> getLatestBookReviews(int page)
+    {
+        if (latestReviews == null)
+        {
+            latestReviews = new MutableLiveData<>();
+            loadLatestBookReviews(page);
+        }
+        return latestReviews;
+    }
 
     public LiveData<GsonNews> getLatestNews(int page)
     {
@@ -28,6 +43,25 @@ public class NewsModel extends ViewModel
         }
 
         return  latestNews;
+    }
+
+    private void loadLatestBookReviews(int page)
+    {
+        Call<GsonBooks> call = BaseApi.createService(MainService.class).getLatestBookReviews(Const.INJECTED_STRING, page);
+        call.enqueue(new Callback<GsonBooks>()
+        {
+            @Override
+            public void onResponse(Call<GsonBooks> call, Response<GsonBooks> response)
+            {
+                latestReviews.setValue(response.body().getBooks());
+            }
+
+            @Override
+            public void onFailure(Call<GsonBooks> call, Throwable t)
+            {
+                // Maker somer error for server error
+            }
+        });
     }
 
     private void loadLatestNews(int page)
