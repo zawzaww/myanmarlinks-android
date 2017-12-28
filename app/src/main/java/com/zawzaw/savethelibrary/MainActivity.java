@@ -1,5 +1,6 @@
 package com.zawzaw.savethelibrary;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,11 +17,14 @@ import android.widget.TextView;
 import com.squareup.otto.Subscribe;
 import com.zawzaw.savethelibrary.event.eventclass.Events;
 import com.zawzaw.savethelibrary.event.main.OttoBus;
+import com.zawzaw.savethelibrary.ui.NoConnectionActivity;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
 import com.zawzaw.savethelibrary.utils.Modular;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
+    public static final String TAG = MainActivity.class.getSimpleName();
+
     FloatingActionButton fab;
 
     @Override
@@ -102,17 +106,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Subscribe
     public void getMessage(Events.NoInternetConnection noInternetConnection)
     {
-        Snackbar.make(fab, Modular.mercyOnZgUser(getString(R.string.no_internet_connection)), Snackbar.LENGTH_INDEFINITE).setAction("RETRY", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this, NoConnectionActivity.class);
+        Bundle args = new Bundle();
+        args.putString("returned_activity", TAG);
+        intent.putExtras(args);
+        startActivity(intent);
+        finish();
 
-                finish();
-
-                startActivity(getIntent());
-
-            }
-        }).show();
-
+//      Snackbar.make(fab, Modular.mercyOnZgUser(getString(R.string.no_internet_connection)), Snackbar.LENGTH_INDEFINITE).setAction("RETRY", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                finish();
+//
+//                startActivity(getIntent());
+//
+//            }
+//        }).show();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
