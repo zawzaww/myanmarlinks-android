@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="210dp">
 
         <com.wang.avi.AVLoadingIndicatorView
             android:id="@+id/review_loading_indicator"
