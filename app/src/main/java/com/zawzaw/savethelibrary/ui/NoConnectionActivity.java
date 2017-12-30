@@ -28,8 +28,7 @@ public class NoConnectionActivity extends AppCompatActivity
         TextView noInternet = findViewById(R.id.text_no_internet);
         FontEmbedder.force(noInternet, getString(R.string.no_internet_connection_mm));
 
-        Snackbar.make(mView, getString(R.string.no_internet_connection), Snackbar.LENGTH_INDEFINITE).setAction("RETRY", new View.OnClickListener()
-        {
+        Snackbar.make(mView, getString(R.string.no_internet_connection), Snackbar.LENGTH_INDEFINITE).setAction("RETRY", new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {

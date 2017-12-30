@@ -12,14 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import com.squareup.otto.Subscribe;
 import com.zawzaw.savethelibrary.event.eventclass.Events;
 import com.zawzaw.savethelibrary.event.main.OttoBus;
 import com.zawzaw.savethelibrary.ui.NoConnectionActivity;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
-import com.zawzaw.savethelibrary.utils.Modular;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
