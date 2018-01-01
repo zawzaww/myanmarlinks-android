@@ -4,24 +4,22 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by zawzaw on 25/12/17.
+ * Created by zawzaw on 31/12/17.
  */
 
-public class GsonNews
-{
+public class GsonNews {
+
     @SerializedName("total")
     private int total;
 
     @SerializedName("data")
     private List<GsonNew> news;
 
-    public int getTotal()
-    {
+    public int getTotal() {
         return total;
     }
 
-    public List<GsonNew> getNews()
-    {
+    public List<GsonNew> getNews() {
         return news;
     }
 
