@@ -51,4 +51,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
     // Circular Indicator
     implementation 'me.relex:circleindicator:1.2.2@aar'
+    // MDetect
+    implementation 'myatminsoe.mdetect.android:mdetect-android:3.0'
+    // Progress Icon
+    implementation 'com.wang.avi:library:2.1.3'
 }

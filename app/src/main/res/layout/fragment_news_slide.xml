@@ -10,6 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/slider_loading_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:indicatorColor="@color/colorPrimary"
+            app:indicatorName="BallSpinFadeLoaderIndicator" />
+
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/indicator"
             android:background="@color/colorPrimaryDark"
@@ -20,7 +28,7 @@
             android:id="@+id/main_slider"
             android:layout_below="@+id/indicator"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="220dp" />
     </RelativeLayout>
 
 </FrameLayout>
