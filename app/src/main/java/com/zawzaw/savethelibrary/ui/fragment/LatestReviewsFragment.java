@@ -10,10 +10,9 @@ import com.zawzaw.savethelibrary.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LatestBookFragment extends Fragment {
+public class LatestReviewsFragment extends Fragment {
 
-
-    public LatestBookFragment() {
+    public LatestReviewsFragment() {
         // Required empty public constructor
     }
 
@@ -22,7 +21,7 @@ public class LatestBookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_latest_book, container, false);
+        return inflater.inflate(R.layout.fragment_latest_reviews, container, false);
     }
 
 }
