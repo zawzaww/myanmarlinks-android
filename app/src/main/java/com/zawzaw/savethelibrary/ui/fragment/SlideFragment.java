@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.utils.Const;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
-import com.zawzaw.savethelibrary.utils.Moulder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,8 +63,7 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
         Glide.with(getActivity().getApplicationContext()).load(Const.IMG_URL + imageLink)
                 .into(imageView);
 
-        textView.setText(Moulder.mercyOnZgUser(newTitle));
-        FontEmbedder.force(textView);
+        FontEmbedder.force(textView, newTitle);
 
         view.setOnClickListener(this);
 
