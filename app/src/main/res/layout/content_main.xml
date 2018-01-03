@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         tools:context="net.myanmarlinks.savethelibrary.MainActivity"
         tools:showIn="@layout/app_bar_main">
 
@@ -24,19 +24,19 @@
             android:id="@+id/title_latest_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="10dp"
+            android:text="@string/latest_reviews"
             android:textAppearance="?android:textAppearanceMedium"
-            android:text="@string/latest_reviews" />
+            android:textColor="@color/colorPrimaryDark" />
 
         <fragment
-            android:layout_marginTop="10dp"
             android:id="@+id/latest_book_review_fragment"
+            android:name="com.zawzaw.savethelibrary.ui.fragment.LatestReviewsFragment"
             android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
-            android:name="com.zawzaw.savethelibrary.ui.fragment.LatestReviewsFragment" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
     </LinearLayout>
 
 </ScrollView>

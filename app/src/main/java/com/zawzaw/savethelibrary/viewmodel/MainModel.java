@@ -9,6 +9,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import java.util.List;
 
+import com.zawzaw.savethelibrary.event.eventclass.Events;
+import com.zawzaw.savethelibrary.event.main.OttoBus;
 import com.zawzaw.savethelibrary.model.gson.GsonBook;
 import com.zawzaw.savethelibrary.model.gson.GsonBooks;
 import com.zawzaw.savethelibrary.model.gson.GsonNews;
@@ -52,7 +54,8 @@ public class MainModel extends ViewModel {
 
             @Override
             public void onFailure(Call<GsonBooks> call, Throwable t) {
-                // Make some error for server response error
+                Events.NoInternetConection noInternetConection = new Events.NoInternetConection("no");
+                OttoBus.getBus().post(noInternetConection);
 
             }
         });
