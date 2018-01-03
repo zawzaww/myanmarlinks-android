@@ -15,7 +15,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import me.relex.circleindicator.CircleIndicator;
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.model.gson.GsonNew;
-import com.zawzaw.savethelibrary.viewmodel.NewsModel;
+import com.zawzaw.savethelibrary.viewmodel.MainModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +24,7 @@ public class NewsSlideFragment extends Fragment {
 
     List<GsonNew> gsonNews = new ArrayList<>();
 
-    private NewsModel newsModel;
+    private MainModel mainModel;
     ViewPager mViewPager;
     CircleIndicator indicator;
     NewsPagerAdapter adapter;
@@ -53,9 +53,9 @@ public class NewsSlideFragment extends Fragment {
         indicator.setViewPager(mViewPager);
         adapter.registerDataSetObserver(indicator.getDataSetObserver());
 
-        newsModel = ViewModelProviders.of(getActivity()).get(NewsModel.class);
+        mainModel = ViewModelProviders.of(getActivity()).get(MainModel.class);
 
-        newsModel.getLatestNews(1).observe(this, latestNews -> {
+        mainModel.getLatestNews(1).observe(this, latestNews -> {
             gsonNews.addAll(latestNews.getNews());
             loadingIndicator.hide();
             adapter.notifyDataSetChanged();

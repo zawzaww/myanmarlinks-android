@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView latestReviews = findViewById(R.id.title_latest_reviews);
+        TextView latestReviews = findViewById(R.id.title_latest_review);
         FontEmbedder.forceTitle(latestReviews, getString(R.string.latest_reviews));
 
         FloatingActionButton fab = findViewById(R.id.fab);
