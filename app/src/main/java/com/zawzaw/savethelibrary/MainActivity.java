@@ -1,5 +1,6 @@
 package com.zawzaw.savethelibrary;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,16 +12,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.squareup.otto.Subscribe;
 import com.zawzaw.savethelibrary.event.eventclass.Events;
 import com.zawzaw.savethelibrary.event.main.OttoBus;
+import com.zawzaw.savethelibrary.ui.NoConnectionActivity;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
-import com.zawzaw.savethelibrary.utils.Moulder;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static final String TAG = MainActivity.class.getSimpleName();
 
     FloatingActionButton fab;
 
@@ -94,14 +96,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Subscribe
     public void getMessage(Events.NoInternetConection noInternetConnection) {
-        Snackbar.make(fab, Moulder.mercyOnZgUser(getString(R.string.no_internet_connection)), Snackbar.LENGTH_INDEFINITE).setAction("RETRY", new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                finish();
-                startActivity(getIntent());
-            }
-        }).show();
+        Intent intent = new Intent(MainActivity.this, NoConnectionActivity.class);
+        Bundle args = new Bundle();
+        args.putString("returned_activity", TAG);
+        intent.putExtras(args);
+
+        startActivity(intent);
+        finish();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

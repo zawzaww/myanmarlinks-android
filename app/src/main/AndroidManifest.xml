@@ -27,6 +27,9 @@
         <activity android:name=".ui.StartActivity">
         </activity>
 
+        <activity android:name=".ui.NoConnectionActivity">
+        </activity>
+
     </application>
 
 </manifest>
