@@ -14,6 +14,8 @@ import com.zawzaw.savethelibrary.event.main.OttoBus;
 import com.zawzaw.savethelibrary.model.gson.GsonBook;
 import com.zawzaw.savethelibrary.model.gson.GsonBooks;
 import com.zawzaw.savethelibrary.model.gson.GsonNews;
+import com.zawzaw.savethelibrary.model.gson.GsonPdf;
+import com.zawzaw.savethelibrary.model.gson.GsonPdfs;
 import com.zawzaw.savethelibrary.network.BaseApi;
 import com.zawzaw.savethelibrary.network.services.MainService;
 import com.zawzaw.savethelibrary.utils.Const;
@@ -26,6 +28,15 @@ public class MainModel extends ViewModel {
 
     public MutableLiveData<GsonNews> latestNews;
     public MutableLiveData<List<GsonBook>> latestReviews;
+    public MutableLiveData<List<GsonPdf>> latestPdfs;
+
+    public LiveData<List<GsonPdf>> getLatestPdfs(int page) {
+        if (latestPdfs == null) {
+            latestPdfs = new MutableLiveData<>();
+            loadLatestPdfs(page);
+        }
+        return latestPdfs;
+    }
 
     public LiveData<List<GsonBook>> getLatestBookReviews(int page) {
         if(latestReviews == null) {
@@ -35,13 +46,28 @@ public class MainModel extends ViewModel {
         return latestReviews;
     }
 
-
     public LiveData<GsonNews> getLatestNews(int page) {
         if (latestNews == null) {
             latestNews = new MutableLiveData<>();
             loadLatestNews(page);
         }
         return latestNews;
+    }
+
+    private void loadLatestPdfs(int page) {
+        Call<GsonPdfs> call = BaseApi.createService(MainService.class).getPdfs(Const.INJECTED_STRING, page);
+        call.enqueue(new Callback<GsonPdfs>() {
+            @Override
+            public void onResponse(Call<GsonPdfs> call, Response<GsonPdfs> response) {
+                latestPdfs.setValue(response.body().getPdfList());
+            }
+
+            @Override
+            public void onFailure(Call<GsonPdfs> call, Throwable t) {
+                Events.NoInternetConection noInternetConection = new Events.NoInternetConection("no");
+                OttoBus.getBus().post(noInternetConection);
+            }
+        });
     }
 
     private void loadLatestBookReviews(int page) {

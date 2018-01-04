@@ -30,6 +30,16 @@
         <activity android:name=".ui.NoConnectionActivity">
         </activity>
 
+        <activity
+            android:name=".ui.PdfDetailActivity"
+            android:label="@string/title_activity_pdf_detail"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zawzaw.savethelibrary.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>

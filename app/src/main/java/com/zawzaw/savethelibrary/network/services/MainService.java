@@ -7,6 +7,7 @@ import retrofit2.http.Query;
 
 import com.zawzaw.savethelibrary.model.gson.GsonBooks;
 import com.zawzaw.savethelibrary.model.gson.GsonNews;
+import com.zawzaw.savethelibrary.model.gson.GsonPdfs;
 
 /**
  * Created by zawzaw on 31/12/17.
@@ -19,5 +20,8 @@ public interface MainService {
 
     @GET("get-books")
     Call<GsonBooks> getLatestBookReviews(@Header("Authorization") String authorization, @Query("page") int page);
+
+    @GET("get-pdfs")
+    Call<GsonPdfs> getPdfs(@Header("Authorization") String authorization, @Query("page") int page);
 
 }
