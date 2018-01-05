@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.utils.Const;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
+import com.zawzaw.savethelibrary.utils.GlideApp;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,7 +60,8 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_slide, container, false);
         ImageView imageView = view.findViewById(R.id.main_slider_image);
         TextView textView = view.findViewById(R.id.main_slider_text);
-        Glide.with(getActivity().getApplicationContext()).load(Const.IMG_URL + imageLink)
+
+        GlideApp.with(getActivity().getApplicationContext()).load(Const.IMG_URL + imageLink)
                 .into(imageView);
 
         FontEmbedder.force(textView, newTitle);

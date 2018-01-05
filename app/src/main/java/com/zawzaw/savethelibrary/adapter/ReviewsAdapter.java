@@ -14,6 +14,7 @@ import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.model.gson.GsonBook;
 import com.zawzaw.savethelibrary.utils.Const;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
+import com.zawzaw.savethelibrary.utils.GlideApp;
 
 /**
  * Created by zawzaw on 02/01/18.
@@ -40,7 +41,10 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewsV
 
     @Override
     public void onBindViewHolder(ReviewsViewHolder holder, int position) {
-        Glide.with(context).load(Const.MAIN_URL + gsonBooks.get(position).getFeature_image_path()).into(holder.bookCover);
+        GlideApp.with(context)
+                .load(Const.MAIN_URL + gsonBooks.get(position).getFeature_image_path())
+                .placeholder(R.drawable.pdf_cover)
+                .into(holder.bookCover);
         FontEmbedder.force(holder.bookTitle, gsonBooks.get(position).getBook_title());
     }
 

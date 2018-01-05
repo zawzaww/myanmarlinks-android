@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
-import com.bumptech.glide.Glide;
 
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.model.gson.GsonPdf;
 import com.zawzaw.savethelibrary.utils.Const;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
+import com.zawzaw.savethelibrary.utils.GlideApp;
 
 /**
  * Created by zawzaw on 04/01/18.
@@ -39,7 +39,10 @@ public class ResourcesAdapter extends RecyclerView.Adapter<ResourcesAdapter.Reso
 
     @Override
     public void onBindViewHolder(ResourcesViewHolder holder, int position) {
-        Glide.with(context).load(Const.IMG_URL + gsonPdfs.get(position).getPdf_image()).into(holder.bookCover);
+        GlideApp.with(context)
+                .load(Const.IMG_URL + gsonPdfs.get(position).getPdf_image())
+                .placeholder(R.drawable.pdf_cover)
+                .into(holder.bookCover);
         FontEmbedder.force(holder.bookTitle, gsonPdfs.get(position).getPdf_title());
     }
 
