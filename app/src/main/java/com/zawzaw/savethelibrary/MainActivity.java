@@ -13,14 +13,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
 import com.squareup.otto.Subscribe;
+
 import com.zawzaw.savethelibrary.event.eventclass.Events;
 import com.zawzaw.savethelibrary.event.main.OttoBus;
 import com.zawzaw.savethelibrary.ui.NoConnectionActivity;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
+import com.zawzaw.savethelibrary.utils.receiver.ConnectionReceiver;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, ConnectionReceiver.ConnectionReciverLinstener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -129,6 +131,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        if (isConnected) {
+            finish();
+            startActivity(getIntent());
+        } else {
+            Events.NoInternetConection noInternetConection = new Events.NoInternetConection("no");
+            OttoBus.getBus().post(noInternetConection);
+        }
     }
 
 }
