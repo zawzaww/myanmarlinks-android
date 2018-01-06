@@ -25,15 +25,43 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.StartActivity">
-        </activity>
+        <activity android:name=".ui.StartActivity" />
 
-        <activity android:name=".ui.NoConnectionActivity">
-        </activity>
+        <activity android:name=".ui.NoConnectionActivity" />
 
         <activity
             android:name=".ui.PdfDetailActivity"
             android:label="@string/title_activity_pdf_detail"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zawzaw.savethelibrary.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.ListNewsActivity"
+            android:label="@string/title_activity_list_news"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zawzaw.savethelibrary.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.ListPdfActivity"
+            android:label="@string/title_activity_list_pdf"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zawzaw.savethelibrary.ui.ListPdfActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.ListReviewActivity"
+            android:label="@string/title_activity_list_review"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

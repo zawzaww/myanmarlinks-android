@@ -9,4 +9,7 @@
     <string name="not_internet_connection_mm">အင်တာနက်\nချိတ်ဆက်၍ မရပါ</string>
     <string name="latest_resources">PDFs</string>
     <string name="title_activity_pdf_detail">PdfDetailActivity</string>
+    <string name="title_activity_list_news">ListNewsActivity</string>
+    <string name="title_activity_list_pdf">ListPdfActivity</string>
+    <string name="title_activity_list_review">ListReviewActivity</string>
 </resources>
