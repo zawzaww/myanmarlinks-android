@@ -42,4 +42,10 @@ public class NoConnectionActivity extends AppCompatActivity {
         }).show();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 }

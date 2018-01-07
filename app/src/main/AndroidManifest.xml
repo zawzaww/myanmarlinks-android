@@ -69,14 +69,6 @@
                 android:value="com.zawzaw.savethelibrary.MainActivity" />
         </activity>
 
-        <receiver
-            android:name=".utils.receiver.ConnectionReceiver"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
-
     </application>
 
 </manifest>

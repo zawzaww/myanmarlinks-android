@@ -19,10 +19,10 @@ import com.zawzaw.savethelibrary.event.eventclass.Events;
 import com.zawzaw.savethelibrary.event.main.OttoBus;
 import com.zawzaw.savethelibrary.ui.NoConnectionActivity;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
-import com.zawzaw.savethelibrary.utils.receiver.ConnectionReceiver;
+import com.zawzaw.savethelibrary.utils.Helper;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ConnectionReceiver.ConnectionReciverLinstener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if (!Helper.checkInternetConnection(getApplicationContext())) {
+            changeToNoConnection();
+        }
 
         TextView latestReviews = findViewById(R.id.title_latest_review);
         FontEmbedder.forceTitle(latestReviews, getString(R.string.latest_reviews));
@@ -98,7 +102,10 @@ public class MainActivity extends AppCompatActivity
 
     @Subscribe
     public void getMessage(Events.NoInternetConection noInternetConnection) {
+        changeToNoConnection();
+    }
 
+    private void changeToNoConnection() {
         Intent intent = new Intent(MainActivity.this, NoConnectionActivity.class);
         Bundle args = new Bundle();
         args.putString("returned_activity", TAG);
@@ -131,17 +138,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void onNetworkConnectionChanged(boolean isConnected) {
-        if (isConnected) {
-            finish();
-            startActivity(getIntent());
-        } else {
-            Events.NoInternetConection noInternetConection = new Events.NoInternetConection("no");
-            OttoBus.getBus().post(noInternetConection);
-        }
     }
 
 }
