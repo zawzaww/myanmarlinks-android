@@ -36,7 +36,7 @@ public class MainModel extends ViewModel {
         if (randomQuote == null) {
             randomQuote = new MutableLiveData<HashMap<String, GsonQuote>>();
 
-            loadRandomQuore();
+            loadRandomQuote();
         }
         return randomQuote;
     }
@@ -65,7 +65,7 @@ public class MainModel extends ViewModel {
         return latestNews;
     }
 
-    private void loadRandomQuore() {
+    private void loadRandomQuote() {
         Call<HashMap<String, GsonQuote>> call = BaseApi.createService(MainService.class).getRandomQuote(Const.INJECTED_STRING);
         call.enqueue(new Callback<HashMap<String, GsonQuote>>() {
             @Override
@@ -75,8 +75,7 @@ public class MainModel extends ViewModel {
 
             @Override
             public void onFailure(Call<HashMap<String, GsonQuote>> call, Throwable t) {
-                Events.NoInternetConection noInternetConection = new Events.NoInternetConection("no");
-                OttoBus.getBus().post(noInternetConection);
+                // Make some error for sever response error
             }
         });
 
@@ -92,8 +91,7 @@ public class MainModel extends ViewModel {
 
             @Override
             public void onFailure(Call<GsonPdfs> call, Throwable t) {
-                Events.NoInternetConection noInternetConection = new Events.NoInternetConection("no");
-                OttoBus.getBus().post(noInternetConection);
+                // Make some error for sever response error
             }
         });
     }
@@ -108,9 +106,7 @@ public class MainModel extends ViewModel {
 
             @Override
             public void onFailure(Call<GsonBooks> call, Throwable t) {
-                Events.NoInternetConection noInternetConection = new Events.NoInternetConection("no");
-                OttoBus.getBus().post(noInternetConection);
-
+                // Make some error for sever response error
             }
         });
     }
@@ -125,7 +121,9 @@ public class MainModel extends ViewModel {
 
             @Override
             public void onFailure(Call<GsonNews> call, Throwable t) {
-                // Make some error for server response error
+                // Make some error for sever response error
+                Events.NoInternetConection noInternetConection = new Events.NoInternetConection("no");
+                OttoBus.getBus().post(noInternetConection);
             }
         });
     }
