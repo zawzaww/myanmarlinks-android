@@ -3,10 +3,10 @@ package com.zawzaw.savethelibrary.viewmodel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import java.util.HashMap;
 import java.util.List;
 
 import com.zawzaw.savethelibrary.event.eventclass.Events;
@@ -16,6 +16,7 @@ import com.zawzaw.savethelibrary.model.gson.GsonBooks;
 import com.zawzaw.savethelibrary.model.gson.GsonNews;
 import com.zawzaw.savethelibrary.model.gson.GsonPdf;
 import com.zawzaw.savethelibrary.model.gson.GsonPdfs;
+import com.zawzaw.savethelibrary.model.gson.GsonQuote;
 import com.zawzaw.savethelibrary.network.BaseApi;
 import com.zawzaw.savethelibrary.network.services.MainService;
 import com.zawzaw.savethelibrary.utils.Const;
@@ -29,6 +30,16 @@ public class MainModel extends ViewModel {
     public MutableLiveData<GsonNews> latestNews;
     public MutableLiveData<List<GsonBook>> latestReviews;
     public MutableLiveData<List<GsonPdf>> latestPdfs;
+    public MutableLiveData<HashMap<String, GsonQuote>> randomQuote;
+
+    public MutableLiveData<HashMap<String, GsonQuote>> getRandomQuote() {
+        if (randomQuote == null) {
+            randomQuote = new MutableLiveData<HashMap<String, GsonQuote>>();
+
+            loadRandomQuore();
+        }
+        return randomQuote;
+    }
 
     public LiveData<List<GsonPdf>> getLatestPdfs(int page) {
         if (latestPdfs == null) {
@@ -52,6 +63,23 @@ public class MainModel extends ViewModel {
             loadLatestNews(page);
         }
         return latestNews;
+    }
+
+    private void loadRandomQuore() {
+        Call<HashMap<String, GsonQuote>> call = BaseApi.createService(MainService.class).getRandomQuote(Const.INJECTED_STRING);
+        call.enqueue(new Callback<HashMap<String, GsonQuote>>() {
+            @Override
+            public void onResponse(Call<HashMap<String, GsonQuote>> call, Response<HashMap<String, GsonQuote>> response) {
+                randomQuote.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<HashMap<String, GsonQuote>> call, Throwable t) {
+                Events.NoInternetConection noInternetConection = new Events.NoInternetConection("no");
+                OttoBus.getBus().post(noInternetConection);
+            }
+        });
+
     }
 
     private void loadLatestPdfs(int page) {

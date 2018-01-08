@@ -10,16 +10,24 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.arch.lifecycle.ViewModelProviders;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.otto.Subscribe;
+import com.wang.avi.AVLoadingIndicatorView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import com.zawzaw.savethelibrary.event.eventclass.Events;
 import com.zawzaw.savethelibrary.event.main.OttoBus;
 import com.zawzaw.savethelibrary.ui.NoConnectionActivity;
+import com.zawzaw.savethelibrary.utils.Const;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
+import com.zawzaw.savethelibrary.utils.GlideApp;
 import com.zawzaw.savethelibrary.utils.Helper;
+import com.zawzaw.savethelibrary.viewmodel.MainModel;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +35,12 @@ public class MainActivity extends AppCompatActivity
     public static final String TAG = MainActivity.class.getSimpleName();
 
     FloatingActionButton fab;
+    TextView mQuoteText;
+    AVLoadingIndicatorView quoteLoadingIndicator;
+    ImageView quoteOpen;
+    CircleImageView authorImage;
+    TextView quoteAuthorName;
+    TextView quoteReference;
 
     @Override
     protected void onStart() {
@@ -47,9 +61,32 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        mQuoteText = findViewById(R.id.quote_text);
+        quoteLoadingIndicator = findViewById(R.id.quote_loading_indicator);
+        quoteOpen = findViewById(R.id.quote_open);
+        authorImage = findViewById(R.id.quote_author);
+        quoteAuthorName = findViewById(R.id.quote_author_name);
+        quoteReference = findViewById(R.id.quote_reference);
+
         if (!Helper.checkInternetConnection(getApplicationContext())) {
             changeToNoConnection();
         }
+
+        MainModel mainModel = ViewModelProviders.of(this).get(MainModel.class);
+        mainModel.getRandomQuote().observe(this, randomQuote -> {
+            quoteLoadingIndicator.hide();
+            quoteOpen.setVisibility(View.VISIBLE);
+
+            GlideApp.with(getApplicationContext())
+                    .load(Const.IMG_URL + randomQuote.get("quote").getQuote_author_name())
+                    .placeholder(R.drawable.profile )
+                    .into(authorImage);
+
+            FontEmbedder.force(mQuoteText, randomQuote.get("quote").getContent());
+            FontEmbedder.force(quoteAuthorName, randomQuote.get("quote").getQuote_author_name());
+            FontEmbedder.force(quoteReference, randomQuote.get("quote").getReference());
+
+        });
 
         TextView latestReviews = findViewById(R.id.title_latest_review);
         FontEmbedder.forceTitle(latestReviews, getString(R.string.latest_reviews));
