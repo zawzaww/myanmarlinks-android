@@ -3,10 +3,10 @@ package com.zawzaw.savethelibrary.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -23,7 +23,7 @@ public class ListReviewActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     ViewPager mViewPager;
-    TabLayout mTabLayout;
+    PagerTabStrip mPagerTabStrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +32,13 @@ public class ListReviewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mViewPager = findViewById(R.id.review_pager);
-        mTabLayout = findViewById(R.id.review_pager_title);
+        mPagerTabStrip = findViewById(R.id.review_pager_tab_strip);
+        mPagerTabStrip.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        mPagerTabStrip.setTextColor(getResources().getColor(R.color.white));
+        mPagerTabStrip.setTabIndicatorColor(getResources().getColor(R.color.colorAccent));
+
         ReviewPagerAdapter mAdapter = new ReviewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     public void getMessage(Events.NoInternetConection noInternetConection) {
@@ -64,9 +67,9 @@ public class ListReviewActivity extends AppCompatActivity {
                 case 0:
                     return new ListReviewFragment();
                 case 1:
-                    return new ListReviewCategoryFragment();
-                case 2:
                     return new ListReviewAuthorFragment();
+                case 2:
+                    return new ListReviewCategoryFragment();
                 case 3:
                     return new ListReviewPublisherFragment();
             }
@@ -83,13 +86,13 @@ public class ListReviewActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Latest";
+                    return getString(R.string.latest);
                 case 1:
-                    return "Categories";
+                    return getString(R.string.authors);
                 case 2:
-                    return "Author";
+                    return getString(R.string.categories);
                 case 3:
-                    return "Publisher";
+                    return getString(R.string.publishers);
             }
             return super.getPageTitle(position);
         }
