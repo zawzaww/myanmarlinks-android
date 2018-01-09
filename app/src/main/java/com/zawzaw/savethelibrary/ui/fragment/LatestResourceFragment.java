@@ -2,6 +2,7 @@ package com.zawzaw.savethelibrary.ui.fragment;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,8 +17,6 @@ import com.wang.avi.AVLoadingIndicatorView;
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.adapter.ResourcesAdapter;
 import com.zawzaw.savethelibrary.model.gson.GsonPdf;
-import com.zawzaw.savethelibrary.model.parcel.ParcelPdf;
-import com.zawzaw.savethelibrary.ui.PdfDetailActivity;
 import com.zawzaw.savethelibrary.viewmodel.MainModel;
 
 /**
@@ -61,15 +60,9 @@ public class LatestResourceFragment extends Fragment implements ResourcesAdapter
 
     @Override
     public void OnItemClicked(GsonPdf gsonPdf) {
-        ParcelPdf parcelPdf = new ParcelPdf(gsonPdf.getPdf_id(), gsonPdf.getPdf_title(),
-                gsonPdf.getDownload_link(), gsonPdf.getPdf_image(), gsonPdf.getCategory_mm(),
-                gsonPdf.getCategory_en(), gsonPdf.getPdf_source());
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(gsonPdf.getDownload_link()));
 
-        Bundle args = new Bundle();
-        args.putParcelable("pdf", parcelPdf);
-        Intent intent = new Intent(getActivity(), PdfDetailActivity.class);
-
-        intent.putExtras(args);
         startActivity(intent);
     }
 

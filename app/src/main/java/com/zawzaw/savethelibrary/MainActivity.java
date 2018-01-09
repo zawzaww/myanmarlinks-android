@@ -22,6 +22,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import com.zawzaw.savethelibrary.event.eventclass.Events;
 import com.zawzaw.savethelibrary.event.main.OttoBus;
+import com.zawzaw.savethelibrary.ui.ListReviewActivity;
 import com.zawzaw.savethelibrary.ui.NoConnectionActivity;
 import com.zawzaw.savethelibrary.utils.Const;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
@@ -90,6 +91,10 @@ public class MainActivity extends AppCompatActivity
 
         TextView latestReviews = findViewById(R.id.title_latest_review);
         FontEmbedder.forceTitle(latestReviews, getString(R.string.latest_reviews));
+        latestReviews.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, ListReviewActivity.class);
+            startActivity(intent);
+        });
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your Own Action", Snackbar.LENGTH_LONG)

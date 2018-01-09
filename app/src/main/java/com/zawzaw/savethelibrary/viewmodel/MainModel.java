@@ -27,10 +27,10 @@ import com.zawzaw.savethelibrary.utils.Const;
 
 public class MainModel extends ViewModel {
 
-    public MutableLiveData<GsonNews> latestNews;
-    public MutableLiveData<List<GsonBook>> latestReviews;
-    public MutableLiveData<List<GsonPdf>> latestPdfs;
-    public MutableLiveData<HashMap<String, GsonQuote>> randomQuote;
+    private MutableLiveData<GsonNews> latestNews;
+    private MutableLiveData<List<GsonBook>> latestReviews;
+    private MutableLiveData<List<GsonPdf>> latestPdfs;
+    private MutableLiveData<HashMap<String, GsonQuote>> randomQuote;
 
     public MutableLiveData<HashMap<String, GsonQuote>> getRandomQuote() {
         if (randomQuote == null) {

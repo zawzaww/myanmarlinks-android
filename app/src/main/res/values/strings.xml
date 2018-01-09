@@ -7,10 +7,10 @@
     <string name="latest_reviews">စာအုပ်အညွှန်းများ</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="not_internet_connection_mm">အင်တာနက်\nချိတ်ဆက်၍ မရပါ</string>
-    <string name="latest_resources">PDFs</string>
+    <string name="latest_resources">RESOURCES CENTER</string>
     <string name="title_activity_pdf_detail">PdfDetailActivity</string>
     <string name="title_activity_list_news">ListNewsActivity</string>
     <string name="title_activity_list_pdf">ListPdfActivity</string>
-    <string name="title_activity_list_review">ListReviewActivity</string>
+    <string name="title_activity_list_review">Book Reviews</string>
     <string name="sample_quote">"ကိုယ်က အလျှော့ပေးရင် ကိုယ်ဟာအလိုလို ခိုင်မာမှု ရှိတယ်။ ကိုယ်က ပေးဆပ်ရင် ကိုယ့်မှာ အလိုလို ရစရာတွေ ပေါ်လာတယ်။ ကိုယ့်မှာ လိုအပ်ချက် ဘာမှမရှိရင် ကိုယ့်အတွက် အားလုံးပြည့်စုံတယ်။"</string>
 </resources>
