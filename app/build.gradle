@@ -58,4 +58,6 @@ dependencies {
     // Progress Icon
     implementation 'com.wang.avi:library:2.1.3'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    // SuperRecyclerView
+    implementation 'com.malinskiy:superrecyclerview:1.1.4'
 }

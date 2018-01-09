@@ -35,6 +35,10 @@ public class NoConnectionActivity extends AppCompatActivity {
                 if (returnedActivity.equals("MainActivity")) {
                     intent = new Intent(NoConnectionActivity.this, MainActivity.class);
                 }
+                else if (returnedActivity.equals("ListReviewActivity")){
+                    intent = new Intent(NoConnectionActivity.this, ListReviewActivity.class);
+                }
+
                 startActivity(intent);
                 finish();
 
