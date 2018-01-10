@@ -4,19 +4,29 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.wang.avi.AVLoadingIndicatorView;
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.adapter.ReviewDetailAdapter;
 import com.zawzaw.savethelibrary.adapter.ReviewsAdapter;
+import com.zawzaw.savethelibrary.event.eventclass.Events;
+import com.zawzaw.savethelibrary.event.main.OttoBus;
 import com.zawzaw.savethelibrary.model.gson.GsonBook;
+import com.zawzaw.savethelibrary.model.gson.GsonBooks;
+import com.zawzaw.savethelibrary.network.BaseApi;
+import com.zawzaw.savethelibrary.network.services.MainService;
+import com.zawzaw.savethelibrary.utils.Const;
 import com.zawzaw.savethelibrary.viewmodel.ReviewModel;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +41,6 @@ public class ListReviewFragment extends Fragment implements ReviewsAdapter.Revie
 
     private static class ActivityState {
         private int nextPage = 1;
-        private List<GsonBook> reviews = new ArrayList<>();
     }
 
     private ActivityState mState = new ActivityState();
@@ -53,30 +62,47 @@ public class ListReviewFragment extends Fragment implements ReviewsAdapter.Revie
         mRecycler.setLayoutManager(lm);
         mRecycler.getRecyclerView().setHasFixedSize(true);
 
-        mAdapter = new ReviewDetailAdapter(mState.reviews, getActivity().getApplicationContext());
+        reviewModel = ViewModelProviders.of(this).get(ReviewModel.class);
+
+        mAdapter = new ReviewDetailAdapter(reviewModel.gsonBooks, getActivity().getApplicationContext());
         mRecycler.setAdapter(mAdapter);
 
-        reviewModel = ViewModelProviders.of(this).get(ReviewModel.class);
-        loadData(mState.nextPage);
+        if (reviewModel.gsonBooks.isEmpty()) {
+            loadData();
+        }
 
         mRecycler.setOnMoreListener((overallItemsCount, itemsBeforeMore, maxLastVisiblePosition) -> {
-            loadData(mState.nextPage);
+            loadData();
         });
-
         return view;
     }
 
-    private void loadData(int page) {
-        reviewModel.getLatestBookReviews(page).observe(this, gsonBooks -> {
-            consumeApiData(gsonBooks);
-            indicator.hide();
-            mRecycler.hideMoreProgress();
+    private void loadData() {
+        Call<GsonBooks> call = BaseApi.createService(MainService.class).getLatestBookReviews(Const.INJECTED_STRING, mState.nextPage);
+        call.enqueue(new Callback<GsonBooks>() {
+            @Override
+            public void onResponse(Call<GsonBooks> call, Response<GsonBooks> response) {
+                Log.i("API", "API Called");
+                consumeApiData(response.body().getBooks());
+                indicator.hide();
+                mRecycler.hideMoreProgress();
+            }
+
+            @Override
+            public void onFailure(Call<GsonBooks> call, Throwable t) {
+                consumeApiData(null);
+                indicator.hide();
+                mRecycler.hideMoreProgress();
+                Events.NoInternetConection noInternetConection = new Events.NoInternetConection("no");
+                OttoBus.getBus().post(noInternetConection);
+            }
         });
+
     }
 
     private void consumeApiData(List<GsonBook> books) {
         if(books != null) {
-            mState.reviews.addAll(books);
+            reviewModel.gsonBooks.addAll(books);
             mAdapter.notifyDataSetChanged();
             mState.nextPage++;
         }
