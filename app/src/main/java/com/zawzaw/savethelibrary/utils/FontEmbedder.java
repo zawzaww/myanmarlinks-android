@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
 import me.myatminsoe.mdetect.MDetect;
+import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
+import org.sufficientlysecure.htmltextview.HtmlTextView;
 import com.zawzaw.savethelibrary.MainApplication;
 
 /**
@@ -50,7 +52,7 @@ public class FontEmbedder {
         force(textView, textView.getText().toString());
     }
 
-    public static void force(View view, String text){
+    public static void force(View view, String text, HtmlHttpImageGetter htmlGetter){
         force((TextView) view, text);
     }
 
@@ -61,6 +63,16 @@ public class FontEmbedder {
     public static void force(Button button, String text){
         button.setText(Moulder.mercyOnZgUser(text));
         button.setTypeface(typeface);
+    }
+
+    public static void force(HtmlTextView htmlTextView, String text, HtmlHttpImageGetter imageGetter) {
+        htmlTextView.setTypeface(typeface);
+        htmlTextView.setHtml(text, imageGetter);
+    }
+
+    public static void force(HtmlTextView htmlTextView, String text) {
+        htmlTextView.setTypeface(typeface);
+        htmlTextView.setHtml(text);
     }
 
     public static void force(Button button){

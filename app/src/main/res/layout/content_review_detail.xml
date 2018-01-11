@@ -12,32 +12,37 @@
     tools:context="com.zawzaw.savethelibrary.ui.ReviewDetailActivity"
     tools:showIn="@layout/activity_review_detail">
 
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/review_detail_loading_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:indicatorColor="@color/colorPrimary"
+        app:indicatorName="BallSpinFadeLoaderIndicator" />
     <ScrollView
+        android:id="@+id/review_main_scrollview"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <android.support.v7.widget.CardView
                     android:id="@+id/img_card"
                     android:layout_width="250dp"
-                    android:layout_height="350dp"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:elevation="3dp"
                     app:cardElevation="3dp">
 
                     <ImageView
                         android:id="@+id/img_book_detail"
                         android:layout_width="250dp"
-                        android:layout_height="match_parent"
-                        android:padding="5dp" />
+                        android:scaleType="matrix"
+                        android:layout_height="350dp" />
                 </android.support.v7.widget.CardView>
 
                 <TextView
@@ -48,118 +53,95 @@
                     android:layout_below="@+id/img_card"
                     android:layout_marginTop="40dp"
                     android:padding="5dp"
-                    android:text="Book Title"
                     android:textColor="@color/md_red_900"
                     android:textSize="26sp" />
-
-                <TextView
-                    android:id="@+id/txt_book_author_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txt_book_title_detail"
-                    android:layout_marginTop="1dp"
-                    android:layout_centerHorizontal="true"
-                    android:padding="5dp"
-                    android:text="Book Author"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="20sp" />
-
-                <View
-                    android:id="@+id/line3_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/txt_book_author_detail"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/md_grey_400" />
-
-                <TextView
-                    android:id="@+id/lbl_book_subject_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/line3_details"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:padding="5dp"
-                    android:textSize="20sp" />
-                <WebView
-                    android:id="@+id/txt_book_subject_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    android:layout_below="@+id/lbl_book_subject_details"
-                    android:layout_marginTop="1dp"
-                    android:lineSpacingMultiplier="1.3"
-                    android:padding="5dp" />
-
-                <View
-                    android:id="@+id/line1_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/txt_book_subject_details"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/md_grey_400" />
-
-                <TextView
-                    android:id="@+id/lbl_book_note_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/line1_details"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:padding="5dp"
-                    android:textSize="20sp" />
-
-                <WebView
-                    android:id="@+id/txt_book_note_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    android:layout_below="@+id/lbl_book_note_details"
-                    android:layout_marginTop="10dp"
-                    android:lineSpacingMultiplier="1.3"
-                    android:padding="5dp" />
-
-
-                <View
-                    android:id="@+id/line2_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/txt_book_note_details"
-                    android:layout_marginTop="20dp"
-                    android:background="@color/md_grey_600" />
-
-                <TextView
-                    android:id="@+id/lbl_publisher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/line2_details"
-                    android:layout_marginTop="30dp"
-                    android:padding="5dp"
-                    android:text="---"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/txt_publisher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lbl_publisher"
-                    android:layout_marginTop="1dp"
-                    android:padding="10dp"
-                    android:text="---"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:id="@+id/txt_publisher_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txt_publisher"
-                    android:layout_marginTop="5dp"
-                    android:padding="10dp"
-                    android:text="---"
-                    android:textSize="20dp" />
             </RelativeLayout>
+            <TextView
+                android:id="@+id/txt_book_author_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:padding="5dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp" />
+
+            <View
+                android:id="@+id/line3_details"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/md_grey_300" />
+
+            <TextView
+                android:id="@+id/lbl_book_subject_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="5dp"
+                android:textSize="20sp" />
+            <org.sufficientlysecure.htmltextview.HtmlTextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/review_subject"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="@android:style/TextAppearance.Small" />
+
+            <View
+                android:id="@+id/line1_details"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/md_grey_300" />
+
+            <TextView
+                android:id="@+id/lbl_book_note_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="5dp"
+                android:textSize="20sp" />
+
+            <org.sufficientlysecure.htmltextview.HtmlTextView
+                android:id="@+id/review_note"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="@android:style/TextAppearance.Small" />
+
+            <View
+                android:id="@+id/line2_details"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/md_grey_300" />
+
+            <TextView
+                android:id="@+id/lbl_publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:padding="5dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txt_publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:padding="10dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txt_publisher_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
 

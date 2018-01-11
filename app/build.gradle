@@ -60,4 +60,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     // SuperRecyclerView
     implementation 'com.malinskiy:superrecyclerview:1.1.4'
+    // HTML TextView
+    implementation 'org.sufficientlysecure:html-textview:3.5'
 }
