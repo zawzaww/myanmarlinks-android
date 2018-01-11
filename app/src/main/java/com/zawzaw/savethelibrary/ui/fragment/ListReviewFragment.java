@@ -123,6 +123,7 @@ public class ListReviewFragment extends Fragment implements ReviewDetailAdapter.
         Bundle args = new Bundle();
         args.putInt("review_id", gsonBook.getBook_id());
         Intent intent = new Intent(getActivity(), ReviewDetailActivity.class);
+        intent.putExtras(args);
         startActivity(intent);
     }
 

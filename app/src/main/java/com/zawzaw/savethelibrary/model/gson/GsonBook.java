@@ -13,6 +13,9 @@ public class GsonBook {
     private int book_id;
 
     @SerializedName("title")
+    private String title;
+
+    @SerializedName("book_name")
     private String book_title;
 
     @SerializedName("download_link")
@@ -98,6 +101,10 @@ public class GsonBook {
 
     public List<GsonBookMedia> getMediaBookList() {
         return mediaBookList;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
 }
