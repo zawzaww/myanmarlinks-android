@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -24,11 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ui.StartActivity" />
-
         <activity android:name=".ui.NoConnectionActivity" />
-
         <activity
             android:name=".ui.ListNewsActivity"
             android:label="@string/title_activity_list_news"
@@ -38,7 +34,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.zawzaw.savethelibrary.MainActivity" />
         </activity>
-
         <activity
             android:name=".ui.ListPdfActivity"
             android:label="@string/title_activity_list_pdf"
@@ -57,6 +52,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.zawzaw.savethelibrary.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.ReviewDetailActivity"
+            android:label="@string/title_activity_review_detail"
+            android:parentActivityName=".ui.ListReviewActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zawzaw.savethelibrary.ui.ListReviewActivity" />
         </activity>
 
     </application>

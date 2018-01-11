@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.model.gson.GsonBook;
+import com.zawzaw.savethelibrary.ui.fragment.ListReviewFragment;
 import com.zawzaw.savethelibrary.utils.Const;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
 import com.zawzaw.savethelibrary.utils.GlideApp;
@@ -23,10 +24,12 @@ public class ReviewDetailAdapter extends RecyclerView.Adapter<ReviewDetailAdapte
 
     List<GsonBook> gsonBooks;
     Context context;
+    ReviewItemClickListener mListener;
 
-    public ReviewDetailAdapter(List<GsonBook> gsonBooks, Context context) {
+    public ReviewDetailAdapter(List<GsonBook> gsonBooks, Context context, ListReviewFragment listReviewFragment) {
         this.gsonBooks = gsonBooks;
         this.context = context;
+        this.mListener = mListener;
     }
 
     @Override
@@ -54,7 +57,7 @@ public class ReviewDetailAdapter extends RecyclerView.Adapter<ReviewDetailAdapte
     }
 
 
-    public class ReviewDetailViewHolder extends RecyclerView.ViewHolder {
+    public class ReviewDetailViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView textAuthor;
         TextView txtBooktitle;
         TextView txtPublisher;
@@ -68,7 +71,17 @@ public class ReviewDetailAdapter extends RecyclerView.Adapter<ReviewDetailAdapte
             txtBookCategory = itemView.findViewById(R.id.main_view_category);
             txtPublisher = itemView.findViewById(R.id.main_view_publisher);
             bookCover = itemView.findViewById(R.id.review_detail_book_cover);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            mListener.OnItemClicked(gsonBooks.get(getLayoutPosition()));
+        }
+    }
+
+    public interface ReviewItemClickListener {
+        void OnItemClicked(GsonBook gsonBook);
     }
 
 }

@@ -17,4 +17,5 @@
     <string name="categories">CATEGORIES</string>
     <string name="publishers">PUBLISHERS</string>
     <string name="sample_quote">"ကိုယ်က အလျှော့ပေးရင် ကိုယ်ဟာအလိုလို ခိုင်မာမှု ရှိတယ်။ ကိုယ်က ပေးဆပ်ရင် ကိုယ့်မှာ အလိုလို ရစရာတွေ ပေါ်လာတယ်။ ကိုယ့်မှာ လိုအပ်ချက် ဘာမှမရှိရင် ကိုယ့်အတွက် အားလုံးပြည့်စုံတယ်။"</string>
+    <string name="title_activity_review_detail">ReviewDetailActivity</string>
 </resources>
