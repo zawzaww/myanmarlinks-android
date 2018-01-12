@@ -1,6 +1,7 @@
 package com.zawzaw.savethelibrary.ui.fragment;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.adapter.ReviewsAdapter;
 import com.zawzaw.savethelibrary.model.gson.GsonBook;
+import com.zawzaw.savethelibrary.ui.ReviewDetailActivity;
 import com.zawzaw.savethelibrary.viewmodel.MainModel;
 
 /**
@@ -57,7 +59,12 @@ public class LatestReviewsFragment extends Fragment implements ReviewsAdapter.Re
 
     @Override
     public void OnItemClicked(GsonBook gsonBook) {
+        Bundle args = new Bundle();
+        args.putInt("review_id", gsonBook.getBook_id());
+        Intent intent = new Intent(getActivity(), ReviewDetailActivity.class);
+        intent.putExtras(args);
 
+        startActivity(intent);
     }
 
 }

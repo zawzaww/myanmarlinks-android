@@ -84,9 +84,9 @@
             <org.sufficientlysecure.htmltextview.HtmlTextView
                 android:layout_marginTop="10dp"
                 android:id="@+id/review_subject"
+                android:textSize="16sp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="@android:style/TextAppearance.Small" />
+                android:layout_height="match_parent" />
 
             <View
                 android:id="@+id/line1_details"
@@ -109,7 +109,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textAppearance="@android:style/TextAppearance.Small" />
+                android:textSize="16sp" />
 
             <View
                 android:id="@+id/line2_details"

@@ -67,12 +67,12 @@ public class FontEmbedder {
 
     public static void force(HtmlTextView htmlTextView, String text, HtmlHttpImageGetter imageGetter) {
         htmlTextView.setTypeface(typeface);
-        htmlTextView.setHtml(text, imageGetter);
+        htmlTextView.setHtml(Moulder.mercyOnZgUser(text), imageGetter);
     }
 
     public static void force(HtmlTextView htmlTextView, String text) {
         htmlTextView.setTypeface(typeface);
-        htmlTextView.setHtml(text);
+        htmlTextView.setHtml(Moulder.mercyOnZgUser(text));
     }
 
     public static void force(Button button){
