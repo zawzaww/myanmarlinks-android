@@ -1,6 +1,7 @@
 package com.zawzaw.savethelibrary.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,13 +15,17 @@ import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 import com.wang.avi.AVLoadingIndicatorView;
 
+import com.zawzaw.savethelibrary.MainActivity;
 import com.zawzaw.savethelibrary.R;
+import com.zawzaw.savethelibrary.event.eventclass.Events;
 import com.zawzaw.savethelibrary.utils.Const;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
 import com.zawzaw.savethelibrary.utils.GlideApp;
 import com.zawzaw.savethelibrary.viewmodel.ReviewDetailModel;
 
 public class ReviewDetailActivity extends AppCompatActivity {
+
+    public static final String TAG = MainActivity.class.getSimpleName();
 
     ReviewDetailModel reviewDetailModel;
     ImageView imgBook;
@@ -77,7 +82,22 @@ public class ReviewDetailActivity extends AppCompatActivity {
         });
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace your Own Action", Snackbar.LENGTH_LONG).setAction("Action", null).show());
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace your Own Action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
+    }
+
+    public void getMessage(Events.NoInternetConection noInternetConection) {
+        changedToNoConnecton();
+    }
+
+    private void changedToNoConnecton() {
+        Intent intent = new Intent(ReviewDetailActivity.this, NoConnectionActivity.class);
+        Bundle args = new Bundle();
+        args.putString("returned_activity", TAG);
+        intent.putExtras(args);
+
+        startActivity(intent);
+        finish();
     }
 
 }
