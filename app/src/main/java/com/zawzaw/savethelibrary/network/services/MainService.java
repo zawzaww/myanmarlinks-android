@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import com.zawzaw.savethelibrary.model.gson.GsonBook;
 import com.zawzaw.savethelibrary.model.gson.GsonBooks;
+import com.zawzaw.savethelibrary.model.gson.GsonNew;
 import com.zawzaw.savethelibrary.model.gson.GsonNews;
 import com.zawzaw.savethelibrary.model.gson.GsonPdfs;
 import com.zawzaw.savethelibrary.model.gson.GsonQuote;
@@ -34,4 +35,6 @@ public interface MainService {
     @GET("get-book-detail/{id}")
     Call<GsonBook> getBookDetail(@Header("Authorization") String authorization, @Path("id") int id);
 
+    @GET("get-new-detail/{id}")
+    Call<GsonNew> getNewDetail(@Header("Authorization") String authorization, @Path("id") int id);
 }

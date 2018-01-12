@@ -3,6 +3,7 @@ package com.zawzaw.savethelibrary.viewmodel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.util.Log;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,9 +27,8 @@ public class ReviewDetailModel extends ViewModel {
     public LiveData<GsonBook> getBooks() {
         if (gsonBook == null) {
             gsonBook = new MutableLiveData<>();
+            loadReview(getReview_id());
         }
-        loadReview(review_id);
-
         return gsonBook;
     }
 
@@ -37,7 +37,9 @@ public class ReviewDetailModel extends ViewModel {
         gsonBookCall.enqueue(new Callback<GsonBook>() {
             @Override
             public void onResponse(Call<GsonBook> call, Response<GsonBook> response) {
+                Log.i("API", "API CALLED");
                 gsonBook.setValue(response.body());
+
             }
 
             @Override

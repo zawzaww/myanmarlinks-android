@@ -1,14 +1,15 @@
 package com.zawzaw.savethelibrary.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.zawzaw.savethelibrary.R;
+import com.zawzaw.savethelibrary.ui.NewsDetailActivity;
 import com.zawzaw.savethelibrary.utils.Const;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
 import com.zawzaw.savethelibrary.utils.GlideApp;
@@ -73,7 +74,11 @@ public class SlideFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Log.d("CLICK", String.valueOf(post_id));
+        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+        Bundle args = new Bundle();
+        args.putInt("post_id", post_id);
+        intent.putExtras(args);
+        startActivity(intent);
     }
 
 }
