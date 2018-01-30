@@ -1,6 +1,8 @@
 package com.zawzaw.savethelibrary;
 
 import android.app.Application;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import me.myatminsoe.mdetect.MDetect;
 import com.zawzaw.savethelibrary.utils.FontEmbedder;
 import com.zawzaw.savethelibrary.utils.Moulder;
@@ -17,6 +19,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
 
         MDetect.INSTANCE.init(this);
         typefaceManager = new TypefaceManager(getAssets());

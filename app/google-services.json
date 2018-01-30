@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "764761241699",
+    "firebase_url": "https://save-the-library-e85e5.firebaseio.com",
+    "project_id": "save-the-library-e85e5",
+    "storage_bucket": "save-the-library-e85e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764761241699:android:6bb9f89a757ccf57",
+        "android_client_info": {
+          "package_name": "com.zawzaw.savethelibrary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764761241699-1qibcl64tie105bal87rtopio3rkt29s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRz9UpKT14JwCAndbC4tt9IUiZR0039jc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

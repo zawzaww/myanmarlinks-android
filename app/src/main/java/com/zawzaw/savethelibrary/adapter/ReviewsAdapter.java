@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
-import com.bumptech.glide.Glide;
 
 import com.zawzaw.savethelibrary.R;
 import com.zawzaw.savethelibrary.model.gson.GsonBook;
