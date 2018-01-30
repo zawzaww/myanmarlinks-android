@@ -79,9 +79,26 @@
                 android:value="com.zawzaw.savethelibrary.ui.ListNewsActivity" />
         </activity>
 
+        <service
+            android:name=".service.MyFirebaseMessagingService"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.FirebaseIdService"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="eef7b926eedf2e82fb2f8461be41bed6b315f23b" />
+
     </application>
 
 </manifest>

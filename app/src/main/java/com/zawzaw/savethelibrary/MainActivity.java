@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.otto.Subscribe;
 import com.wang.avi.AVLoadingIndicatorView;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     FloatingActionButton fab;
     TextView mQuoteText;
@@ -61,6 +64,14 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Firebase Analytics
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, String.valueOf("1"));
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, String.valueOf("SaveTheLib"));
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "text");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
         mQuoteText = findViewById(R.id.quote_text);
         quoteLoadingIndicator = findViewById(R.id.quote_loading_indicator);
