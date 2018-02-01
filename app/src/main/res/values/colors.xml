@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#186159</color>
-    <color name="colorPrimaryDark">#186159</color>
-    <color name="colorAccent">#186159</color>
+    <color name="colorPrimary">#1262b7</color>
+    <color name="colorPrimaryDark">#1262b7</color>
+    <color name="colorAccent">#1262b7</color>
     <color name="white">#ffffff</color>
 
     <!-- Google's Material Design Colors from Material Design Guideline -->
