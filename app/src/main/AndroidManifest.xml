@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zawzaw.savethelibrary">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,6 +24,80 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.StartActivity" />
+
+        <activity android:name=".ui.NoConnectionActivity" />
+
+        <activity
+            android:name=".ui.ListNewsActivity"
+            android:label="@string/title_activity_list_news"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zawzaw.savethelibrary.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.ListPdfActivity"
+            android:label="@string/title_activity_list_pdf"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zawzaw.savethelibrary.ui.ListPdfActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.ListReviewActivity"
+            android:label="@string/title_activity_list_review"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zawzaw.savethelibrary.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.ReviewDetailActivity"
+            android:label="@string/title_activity_review_detail"
+            android:parentActivityName=".ui.ListReviewActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zawzaw.savethelibrary.ui.ListReviewActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.NewsDetailActivity"
+            android:label="@string/title_activity_news_detail"
+            android:parentActivityName=".ui.ListNewsActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zawzaw.savethelibrary.ui.ListNewsActivity" />
+        </activity>
+
+        <service
+            android:name=".service.MyFirebaseMessagingService"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.FirebaseIdService"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="eef7b926eedf2e82fb2f8461be41bed6b315f23b" />
 
     </application>
 

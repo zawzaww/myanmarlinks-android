@@ -1,0 +1,25 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#e3e3e3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/main_slider_image"
+        android:layout_width="match_parent"
+        android:scaleType="matrix"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/main_slider_text"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:background="#99000000"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+</RelativeLayout>

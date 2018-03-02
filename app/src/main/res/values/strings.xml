@@ -1,8 +1,25 @@
 <resources>
     <string name="app_name">Save The Library</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="latest_reviews">စာအုပ်အညွှန်းများ</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="not_internet_connection_mm">အင်တာနက်\nချိတ်ဆက်၍ မရပါ</string>
+    <string name="latest_resources">RESOURCES CENTER</string>
+    <string name="title_activity_pdf_detail">PdfDetailActivity</string>
+    <string name="title_activity_list_news">ListNewsActivity</string>
+    <string name="title_activity_list_pdf">ListPdfActivity</string>
+    <string name="title_activity_list_review">Book Reviews</string>
+    <string name="latest">LATEST</string>
+    <string name="authors">AUTHORS</string>
+    <string name="categories">CATEGORIES</string>
+    <string name="publishers">PUBLISHERS</string>
+    <string name="sample_quote">"ကိုယ်က အလျှော့ပေးရင် ကိုယ်ဟာအလိုလို ခိုင်မာမှု ရှိတယ်။ ကိုယ်က ပေးဆပ်ရင် ကိုယ့်မှာ အလိုလို ရစရာတွေ ပေါ်လာတယ်။ ကိုယ့်မှာ လိုအပ်ချက် ဘာမှမရှိရင် ကိုယ့်အတွက် အားလုံးပြည့်စုံတယ်။"</string>
+    <string name="title_activity_review_detail">Book Review</string>
+    <string name="title_review_subject">စာအုပ်အကြောင်း</string>
+    <string name="title_review_note">စာအုပ်အညွှန်း</string>
+    <string name="title_publisher">ထုတ်ဝေသူ</string>
+    <string name="title_activity_news_detail">NewsDetailActivity</string>
 </resources>

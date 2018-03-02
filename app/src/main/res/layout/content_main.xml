@@ -1,12 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.zawzaw.savethelibrary.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context="net.myanmarlinks.savethelibrary.MainActivity"
+        tools:showIn="@layout/app_bar_main">
 
-</android.support.constraint.ConstraintLayout>
+        <fragment
+            android:id="@+id/main_slider_fragment"
+            android:name="com.zawzaw.savethelibrary.ui.fragment.NewsSlideFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/title_latest_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/latest_reviews"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <fragment
+            android:id="@+id/latest_book_review_fragment"
+            android:name="com.zawzaw.savethelibrary.ui.fragment.LatestReviewsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/title_latest_resources"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="10dp"
+            android:text="@string/latest_resources"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <fragment
+            android:id="@+id/latest_resources_fragment"
+            android:name="com.zawzaw.savethelibrary.ui.fragment.LatestResourceFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+
+        <android.support.v7.widget.CardView
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
+            app:cardCornerRadius="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.wang.avi.AVLoadingIndicatorView
+                    android:id="@+id/quote_loading_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:indicatorColor="@color/colorPrimary"
+                    app:indicatorName="BallSpinFadeLoaderIndicator" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/quote_author"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp" />
+
+                <TextView
+                    android:id="@+id/quote_author_name"
+                    android:layout_below="@id/quote_author"
+                    android:textColor="#FFEB3B"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/quote_open"
+                    android:src="@drawable/quote_open"
+                    android:layout_below="@id/quote_author_name"
+                    android:visibility="gone"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+
+                <TextView
+                    android:id="@+id/quote_text"
+                    android:layout_below="@+id/quote_open"
+                    android:layout_marginTop="12dp"
+                    android:textColor="#fff"
+                    android:layout_width="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/quote_reference"
+                    android:layout_below="@id/quote_text"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:textColor="#9E9E9E"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</ScrollView>
