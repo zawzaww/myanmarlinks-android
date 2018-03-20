@@ -80,6 +80,8 @@ dependencies {
     implementation('com.crashlytics.sdk.android:answers:1.4.1@aar') {
         transitive = true;
     }
+    implementation 'at.blogc:expandabletextview:1.0.5'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    implementation 'android.arch.paging:runtime:1.0.0-alpha4-1'
 }
-
 apply plugin: 'com.google.gms.google-services'
