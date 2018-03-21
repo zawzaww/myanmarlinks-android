@@ -14,13 +14,14 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.otto.Subscribe;
 import com.wang.avi.AVLoadingIndicatorView;
+import at.blogc.android.views.ExpandableTextView;
 import de.hdodenhof.circleimageview.CircleImageView;
-
 import com.zawzaw.savethelibrary.event.eventclass.Events;
 import com.zawzaw.savethelibrary.event.main.OttoBus;
 import com.zawzaw.savethelibrary.ui.ListReviewActivity;
@@ -31,20 +32,20 @@ import com.zawzaw.savethelibrary.utils.GlideApp;
 import com.zawzaw.savethelibrary.utils.Helper;
 import com.zawzaw.savethelibrary.viewmodel.MainModel;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
     FloatingActionButton fab;
-    TextView mQuoteText;
+    ExpandableTextView mQuoteText;
     AVLoadingIndicatorView quoteLoadingIndicator;
     ImageView quoteOpen;
     CircleImageView authorImage;
     TextView quoteAuthorName;
     TextView quoteReference;
+    TextView txtMore;
 
     @Override
     protected void onStart() {
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity
         authorImage = findViewById(R.id.quote_author);
         quoteAuthorName = findViewById(R.id.quote_author_name);
         quoteReference = findViewById(R.id.quote_reference);
+        txtMore = findViewById(R.id.txt_more);
 
         if (!Helper.checkInternetConnection(getApplicationContext())) {
             changeToNoConnection();
@@ -93,6 +95,18 @@ public class MainActivity extends AppCompatActivity
                     .load(Const.IMG_URL + randomQuote.get("quote").getQuote_author_name())
                     .placeholder(R.drawable.profile )
                     .into(authorImage);
+
+            mQuoteText.setAnimationDuration(750L);
+            mQuoteText.setInterpolator(new OvershootInterpolator());
+            mQuoteText.setExpandInterpolator(new OvershootInterpolator());
+            mQuoteText.setCollapseInterpolator(new OvershootInterpolator());
+            txtMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    txtMore.setText(mQuoteText.isExpanded() ? "More >>>" : "<<< Less");
+                    mQuoteText.toggle();
+                }
+            });
 
             FontEmbedder.force(mQuoteText, randomQuote.get("quote").getContent());
             FontEmbedder.force(quoteAuthorName, randomQuote.get("quote").getQuote_author_name());
