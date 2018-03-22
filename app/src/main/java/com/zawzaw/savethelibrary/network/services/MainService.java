@@ -6,7 +6,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import java.util.HashMap;
-
+import com.zawzaw.savethelibrary.model.gson.GsonAuthors;
 import com.zawzaw.savethelibrary.model.gson.GsonBook;
 import com.zawzaw.savethelibrary.model.gson.GsonBooks;
 import com.zawzaw.savethelibrary.model.gson.GsonNew;
@@ -37,4 +37,8 @@ public interface MainService {
 
     @GET("get-new-detail/{id}")
     Call<GsonNew> getNewDetail(@Header("Authorization") String authorization, @Path("id") int id);
+
+    @GET("get-book-authors")
+    Call<GsonAuthors> getAuthorList(@Header("Authorization") String authorization, @Query("page") int page);
+
 }
